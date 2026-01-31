@@ -271,7 +271,7 @@ const Navbar = () => {
                                                                     className="text-lg text-white/60 hover:text-primary transition-colors flex items-center gap-3"
                                                                 >
                                                                     <div className="text-primary shrink-0">
-                                                                        {React.cloneElement(service.icon as React.ReactElement, { size: 18 })}
+                                                                        {React.cloneElement(service.icon as React.ReactElement<{ size?: number }>, { size: 18 })}
                                                                     </div>
                                                                     {service.name}
                                                                 </motion.a>
