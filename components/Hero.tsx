@@ -27,27 +27,44 @@ const Hero = () => {
             </div>
 
             {/* Hero Content Box */}
-            <div className="relative flex flex-col justify-center z-30 items-center text-center md:items-start md:text-left  w-[85%] mx-auto" >
+            <div className="relative flex flex-col justify-center z-30 items-center text-center md:items-start md:text-left w-[85%] mx-auto pt-32 md:pt-0 pb-20 md:pb-0" >
 
-                <span className="text-primary font-semibold tracking-widest uppercase text-sm mb-6 block">
+                <motion.span
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-primary font-bold tracking-[0.3em] uppercase text-[10px] sm:text-xs mb-4 block"
+                >
                     Leading Software Company
-                </span>
-                <h1 className="text-4xl md:text-5xl lg:text-5xl  font-bold mb-8 text-white leading-[1.1] tracking-tight">
-                    Your One Stop Solution <br />
+                </motion.span>
+                <motion.h1
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                    className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 text-white leading-[1.2] tracking-tight"
+                >
+                    Your One Stop Solution <br className="hidden sm:block" />
                     <span className="text-gradient">For all Business Needs</span>
-                </h1>
-                <p className="text-white/70 text-base md:text-lg max-w-2xl mb-12  ">
-                    We at Multi-Task Solutions are aware of the challenges involved in managing a company.
-                    For this reason, we provide an extensive array of services aimed at optimizing your
+                </motion.h1>
+                <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                    className="text-white/60 text-sm md:text-lg max-w-xl mb-10 leading-relaxed"
+                >
+                    We provide an extensive array of services aimed at optimizing your
                     business processes, raising efficiency, and boosting expansion.
-                </p>
+                </motion.p>
 
-                <div className="flex flex-col md:flex-row items-center justify-center md:justify-start gap-10 w-full">
-                    <button className="group relative bg-primary h-14 w-52 rounded-full overflow-hidden text-white font-bold text-sm tracking-widest transition-all hover:scale-105">
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.6 }}
+                    className="flex flex-col md:flex-row items-center justify-center md:justify-start gap-10 w-full"
+                >
+                    <button className="group relative bg-primary h-14 w-56 rounded-full overflow-hidden text-white font-bold text-sm tracking-widest transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(245,168,28,0.3)]">
                         MAIL US TODAY
-
                     </button>
-                </div>
+                </motion.div>
 
             </div>
 
@@ -57,10 +74,10 @@ const Hero = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1, duration: 1 }}
-                className="absolute bottom-10 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-2"
+                className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-2"
             >
-                <span className="text-xs uppercase tracking-widest text-muted">Scroll</span>
-                <div className="w-[1px] h-12 bg-gradient-to-b from-primary to-transparent" />
+                <span className="text-[10px] uppercase tracking-[0.3em] text-white/30">Scroll</span>
+                <div className="w-[1px] h-10 md:h-12 bg-gradient-to-b from-primary to-transparent" />
             </motion.div>
         </div>
     );

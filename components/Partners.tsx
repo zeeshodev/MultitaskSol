@@ -47,7 +47,7 @@ const Partners = () => {
                                     {/* Un-skewed Content Area */}
                                     <div className="skew-x-12 md:skew-x-16 flex items-center justify-center h-full w-full p-6">
                                         {/* Vertical Logo */}
-                                        <div className="rotate-[-90deg] flex items-center justify-center w-[200px] md:w-[250px]">
+                                        <div className="rotate-[-90deg] skew-y-12 md:skew-y-16 flex items-center justify-center w-[200px] md:w-[250px]">
                                             <Image
                                                 src={partner.logo}
                                                 alt={partner.name}

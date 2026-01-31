@@ -3,7 +3,7 @@ import { Plus } from 'lucide-react';
 
 const SERVICES_DATA = [
     {
-        title: "WEB designing & development",
+        title: "WEB design & development",
         description: "Crafting responsive and stunning websites.",
     },
     {
@@ -33,18 +33,18 @@ const ServicesCards = () => {
         <section className='py-24 w-full bg-background'>
             <div className='w-[85%] mx-auto flex flex-col gap-10'>
                 {/* Header Section */}
-                <div className='flex  items-center  justify-between w-full mb-16 gap-4'>
+                <div className='flex flex-col md:flex-row md:items-center justify-between w-full mb-16 gap-8 md:gap-4'>
                     <div className='flex flex-col items-start gap-2'>
-                        <span className='text-primary tracking-widest uppercase text-sm'>
+                        <span className='text-primary tracking-widest uppercase text-sm font-bold'>
                             Our Services
                         </span>
-                        <h2 className='text-4xl md:text-5xl font-semibold text-white leading-tight'>
-                            Driving Growth with <br />
+                        <h2 className='text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight'>
+                            Driving Growth with <br className="hidden sm:block" />
                             <span className="text-gradient">Expert Solutions</span>
                         </h2>
                     </div>
-                    <div className='mt-4'>
-                        <button className='group relative bg-primary h-12 w-44 rounded-full overflow-hidden text-white font-bold text-sm tracking-widest transition-all hover:scale-105'>
+                    <div className='shrink-0'>
+                        <button className='group relative bg-primary h-12 w-full sm:w-44 rounded-full overflow-hidden text-white font-bold text-sm tracking-widest transition-all hover:scale-105'>
                             MAIL US TODAY
                         </button>
                     </div>
@@ -55,17 +55,17 @@ const ServicesCards = () => {
                     {SERVICES_DATA.map((service, index) => (
                         <div
                             key={index}
-                            className='group relative bg-white min-h-[300px] p-20 flex flex-col justify-center  items-center transition-all duration-300 hover:shadow-2xl hover:-translate-y-1'
+                            className='group relative bg-white min-h-[300px] p-5 md:p-16 lg:p-20 flex flex-col justify-center items-start md:items-center transition-all duration-300 hover:shadow-2xl hover:-translate-y-1'
                         >
                             {/* Orange Dot Top Left */}
                             <div className='absolute top-6 left-6 w-2.5 h-2.5 bg-primary rounded-full' />
 
                             {/* Content */}
-                            <div className='max-w-64 flex flex-col  gap-6 '>
-                                <h3 className='text-2xl font-bold text-neutral-800 leading-tight'>
+                            <div className='max-w-xs md:max-w-64 flex flex-col gap-6'>
+                                <h3 className='text-2xl font-bold text-neutral-800 leading-tight uppercase'>
                                     {service.title}
                                 </h3>
-                                <p className='text-neutral-500 text-base leading-relaxed max-w-[85%]'>
+                                <p className='text-neutral-500 text-base leading-relaxed'>
                                     {service.description}
                                 </p>
                             </div>
