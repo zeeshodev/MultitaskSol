@@ -19,7 +19,7 @@ const Partners = () => {
         <section className="py-24 w-full bg-background flex flex-col items-center gap-16 overflow-hidden">
             {/* Header Content */}
             <div className="w-[85%] mx-auto text-center flex flex-col items-center gap-6">
-                <h2 className="text-4xl md:text-5xl font-bold text-white uppercase tracking-tight">Our partner</h2>
+                <h2 className="text-4xl md:text-5xl  text-white uppercase tracking-tight">Our partner</h2>
                 <p className="max-w-4xl text-white/70 text-sm md:text-base leading-relaxed">
                     We proudly collaborate with trusted partners who share our vision of quality, integrity, and excellence.
                     Together, we combine expertise, innovation, and market knowledge to deliver reliable solutions and

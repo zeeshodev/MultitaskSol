@@ -32,7 +32,7 @@ const Hero = () => {
                 <motion.span
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="text-primary font-bold tracking-[0.3em] uppercase text-[10px] sm:text-xs mb-4 block"
+                    className="text-primary  tracking-[0.3em] uppercase text-[10px] sm:text-xs mb-4 block"
                 >
                     Leading Software Company
                 </motion.span>
@@ -40,7 +40,7 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 }}
-                    className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 text-white leading-[1.2] tracking-tight"
+                    className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium mb-6 text-white leading-[1.2] tracking-tight"
                 >
                     Your One Stop Solution <br className="hidden sm:block" />
                     <span className="text-gradient">For all Business Needs</span>
@@ -61,7 +61,7 @@ const Hero = () => {
                     transition={{ delay: 0.6 }}
                     className="flex flex-col md:flex-row items-center justify-center md:justify-start gap-10 w-full"
                 >
-                    <button className="group relative bg-primary h-14 w-56 rounded-full overflow-hidden text-white font-bold text-sm tracking-widest transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(245,168,28,0.3)]">
+                    <button className="group relative bg-primary h-14 w-56 rounded-full overflow-hidden text-white  text-sm tracking-widest transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(245,168,28,0.3)]">
                         MAIL US TODAY
                     </button>
                 </motion.div>

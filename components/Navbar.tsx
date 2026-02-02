@@ -36,7 +36,7 @@ const Navbar = () => {
         };
     }, [isMobileMenuOpen]);
 
-    const navLinks = ["Home", "Services", "Portfolio", "About", "Blog"];
+    const navLinks = ["Home", "Services", "Portfolio", "About", "Contact"];
 
     const services = [
         { name: "Web Design and Development", href: "#web-design", icon: <Monitor size={20} /> },
@@ -58,15 +58,16 @@ const Navbar = () => {
             >
                 <div className="container mx-auto px-6 flex items-center justify-between">
                     {/* Logo */}
-                    <motion.div
+                    <motion.a
+                        href="/"
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
-                        className="flex items-center gap-2"
+                        className="flex items-center gap-2 cursor-pointer"
                     >
                         <span className="text-xl font-bold tracking-tighter text-white">
                             MULTI TASK <span className="text-primary">SOLUTIONS</span>
                         </span>
-                    </motion.div>
+                    </motion.a>
 
                     {/* Desktop Links */}
                     <div className="hidden md:flex items-center gap-8">
@@ -80,7 +81,7 @@ const Navbar = () => {
                                         onMouseLeave={() => setIsServicesOpen(false)}
                                     >
                                         <motion.a
-                                            href="#services"
+                                            href="/Our-Services"
                                             initial={{ opacity: 0, y: -10 }}
                                             animate={{ opacity: 1, y: 0 }}
                                             transition={{ delay: index * 0.1 }}
@@ -151,7 +152,7 @@ const Navbar = () => {
                             return (
                                 <motion.a
                                     key={link}
-                                    href={`#${link.toLowerCase()}`}
+                                    href={link === "Home" ? "/" : link === "About" ? "/About-us" : link === "Contact" ? "/Contact-us" : `/${link.toLowerCase().replace(/ /g, "-")}`}
                                     initial={{ opacity: 0, y: -10 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: index * 0.1 }}
@@ -166,9 +167,6 @@ const Navbar = () => {
 
                     {/* Action Buttons */}
                     <div className="flex items-center gap-4">
-                        <button className="text-white/70 hover:text-white transition-colors">
-                            <Search size={20} />
-                        </button>
                         <button className="hidden h-12 w-32 md:block px-6 py-2 bg-white text-black text-sm font-bold rounded-full hover:bg-primary hover:text-white transition-all">
                             Lets Talk
                         </button>
@@ -219,9 +217,9 @@ const Navbar = () => {
                     >
                         {/* Mobile Menu Header */}
                         <div className="flex items-center justify-between px-6 py-6 border-b border-white/10">
-                            <span className="text-lg font-bold tracking-tighter text-white">
+                            <a href="/" className="text-lg font-bold tracking-tighter text-white">
                                 MULTI TASK <span className="text-primary">SOLUTIONS</span>
-                            </span>
+                            </a>
                             <button
                                 onClick={closeMobileMenu}
                                 className="p-2 text-white hover:text-primary transition-colors"
@@ -286,7 +284,7 @@ const Navbar = () => {
                                     return (
                                         <motion.a
                                             key={link}
-                                            href={`#${link.toLowerCase()}`}
+                                            href={link === "Home" ? "/" : link === "About" ? "/About-us" : link === "Contact" ? "/Contact-us" : `/${link.toLowerCase().replace(/ /g, "-")}`}
                                             initial={{ opacity: 0, x: -20 }}
                                             animate={{ opacity: 1, x: 0 }}
                                             transition={{ delay: index * 0.1 }}

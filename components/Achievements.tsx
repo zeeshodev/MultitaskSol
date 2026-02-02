@@ -24,7 +24,7 @@ const Counter = ({ value, suffix = "+" }: { value: number; suffix?: string }) =>
     }, [isInView, spring, value]);
 
     return (
-        <span ref={ref} className="text-4xl md:text-5xl font-bold text-primary flex items-center">
+        <span ref={ref} className="text-4xl md:text-5xl font-semibold text-primary flex items-center">
             <motion.span>{display}</motion.span>
             {suffix}
         </span>
@@ -39,10 +39,10 @@ const Achievements = () => {
                 {/* Left Content */}
                 <div className="flex flex-col gap-4">
                     <div className="flex flex-col gap-4">
-                        <span className="text-primary tracking-widest uppercase text-sm font-semibold">
+                        <span className="text-primary tracking-widest uppercase text-sm ">
                             Pioneering Trust and Innovation
                         </span>
-                        <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
+                        <h2 className="text-4xl md:text-5xl font-regular text-white leading-tight">
                             Multi Task Solutions <br />
                             <span className="text-gradient">Achievements</span>
                         </h2>
@@ -56,7 +56,7 @@ const Achievements = () => {
                     </div>
 
                     <div className="mt-4">
-                        <button className="group relative bg-primary h-14 w-52 rounded-full overflow-hidden text-white font-bold text-sm tracking-widest transition-all hover:scale-105">
+                        <button className="group relative bg-primary h-14 w-52 rounded-full overflow-hidden text-white  text-sm tracking-widest transition-all hover:scale-105">
                             GET IN TOUCH
                         </button>
                     </div>
@@ -66,25 +66,25 @@ const Achievements = () => {
                 <div className="grid grid-cols-2 gap-x-8 gap-y-12">
                     <div className="flex flex-col gap-2">
                         <Counter value={3000} />
-                        <p className="text-white/80 font-medium text-lg leading-tight">
+                        <p className="text-white/80  text-lg leading-tight">
                             Successful Projects
                         </p>
                     </div>
                     <div className="flex flex-col gap-2">
                         <Counter value={23} />
-                        <p className="text-white/80 font-medium text-lg leading-tight">
+                        <p className="text-white/80  text-lg leading-tight">
                             Countries Supported
                         </p>
                     </div>
                     <div className="flex flex-col gap-2">
                         <Counter value={250} />
-                        <p className="text-white/80 font-medium text-lg leading-tight">
+                        <p className="text-white/80  text-lg leading-tight">
                             Active Clients
                         </p>
                     </div>
                     <div className="flex flex-col gap-2">
                         <Counter value={15} />
-                        <p className="text-white/80 font-medium text-lg leading-tight">
+                        <p className="text-white/80  text-lg leading-tight">
                             Years of Experience
                         </p>
                     </div>

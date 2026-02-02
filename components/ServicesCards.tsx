@@ -35,16 +35,16 @@ const ServicesCards = () => {
                 {/* Header Section */}
                 <div className='flex flex-col md:flex-row md:items-center justify-between w-full mb-16 gap-8 md:gap-4'>
                     <div className='flex flex-col items-start gap-2'>
-                        <span className='text-primary tracking-widest uppercase text-sm font-bold'>
+                        <span className='text-primary tracking-widest uppercase text-sm '>
                             Our Services
                         </span>
-                        <h2 className='text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight'>
+                        <h2 className='text-3xl sm:text-4xl md:text-5xl  text-white leading-tight'>
                             Driving Growth with <br className="hidden sm:block" />
                             <span className="text-gradient">Expert Solutions</span>
                         </h2>
                     </div>
                     <div className='shrink-0'>
-                        <button className='group relative bg-primary h-12 w-full sm:w-44 rounded-full overflow-hidden text-white font-bold text-sm tracking-widest transition-all hover:scale-105'>
+                        <button className='group relative bg-primary h-12 w-full sm:w-44 rounded-full overflow-hidden text-white  text-sm tracking-widest transition-all hover:scale-105'>
                             MAIL US TODAY
                         </button>
                     </div>
