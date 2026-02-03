@@ -1,10 +1,71 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Facebook, Instagram, Linkedin, MessageCircle, Mail } from "lucide-react";
+import { Facebook, Instagram, Linkedin, MessageCircle, Mail, Loader2, CheckCircle2 } from "lucide-react";
 
 const ContactInfoSection = () => {
+    const [formData, setFormData] = useState({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        message: "",
+        services: [] as string[]
+    });
+
+    const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+    const [errorMessage, setErrorMessage] = useState("");
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+    };
+
+    const toggleService = (service: string) => {
+        setFormData(prev => ({
+            ...prev,
+            services: prev.services.includes(service)
+                ? prev.services.filter(s => s !== service)
+                : [...prev.services, service]
+        }));
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setStatus("loading");
+        setErrorMessage("");
+
+        try {
+            const response = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData)
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || "Something went wrong");
+            }
+
+            setStatus("success");
+            setFormData({
+                firstName: "",
+                lastName: "",
+                email: "",
+                phone: "",
+                message: "",
+                services: []
+            });
+
+            // Reset status after a few seconds
+            setTimeout(() => setStatus("idle"), 5000);
+        } catch (error: any) {
+            setStatus("error");
+            setErrorMessage(error.message || "Failed to send message. Please try again.");
+        }
+    };
+
     return (
         <section className="w-full min-h-screen bg-black py-20 md:py-32 flex items-center">
             <div className="w-[90%] md:w-[85%] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20">
@@ -30,10 +91,7 @@ const ContactInfoSection = () => {
 
                     <div className="max-w-md">
                         <p className="text-white/70 text-sm md:text-base font-normal leading-relaxed">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            Have a project in mind or just want to say hello? Fill out the form below and we'll get back to you as soon as possible. Our team is ready to help you bring your ideas to life.
                         </p>
                     </div>
 
@@ -65,21 +123,28 @@ const ContactInfoSection = () => {
                     viewport={{ once: true }}
                     className="flex flex-col gap-10"
                 >
-                    <form className="grid grid-cols-1 md:grid-cols-2 gap-y-10 gap-x-12">
+                    <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-y-10 gap-x-12">
                         {/* Name Input */}
                         <div className="flex flex-col gap-2 group">
-                            <label className="text-gray-400 text-sm font-normal">Your name</label>
+                            <label className="text-gray-400 text-sm font-normal">First name</label>
                             <input
+                                required
                                 type="text"
+                                name="firstName"
+                                value={formData.firstName}
+                                onChange={handleInputChange}
                                 className="bg-transparent border-b border-primary/50 group-hover:border-primary transition-all py-2 outline-none text-white font-normal"
                             />
                         </div>
 
                         {/* Name Input 2 */}
                         <div className="flex flex-col gap-2 group">
-                            <label className="text-gray-400 text-sm font-normal">Your name</label>
+                            <label className="text-gray-400 text-sm font-normal">Last name</label>
                             <input
                                 type="text"
+                                name="lastName"
+                                value={formData.lastName}
+                                onChange={handleInputChange}
                                 className="bg-transparent border-b border-primary/50 group-hover:border-primary transition-all py-2 outline-none text-white font-normal"
                             />
                         </div>
@@ -88,7 +153,11 @@ const ContactInfoSection = () => {
                         <div className="flex flex-col gap-2 group">
                             <label className="text-gray-400 text-sm font-normal">Email</label>
                             <input
+                                required
                                 type="email"
+                                name="email"
+                                value={formData.email}
+                                onChange={handleInputChange}
                                 className="bg-transparent border-b border-primary/50 group-hover:border-primary transition-all py-2 outline-none text-white font-normal"
                             />
                         </div>
@@ -98,6 +167,9 @@ const ContactInfoSection = () => {
                             <label className="text-gray-400 text-sm font-normal">Phone number</label>
                             <input
                                 type="tel"
+                                name="phone"
+                                value={formData.phone}
+                                onChange={handleInputChange}
                                 className="bg-transparent border-b border-primary/50 group-hover:border-primary transition-all py-2 outline-none text-white font-normal"
                             />
                         </div>
@@ -107,12 +179,20 @@ const ContactInfoSection = () => {
                             <label className="text-gray-200 text-sm md:text-base font-normal">Choose the service which you want to hire us.</label>
                             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
                                 {['Design', 'Development', 'Management', 'Marketing'].map((service) => (
-                                    <label key={service} className="flex items-center gap-3 cursor-pointer group">
-                                        <div className="relative w-5 h-5 border border-white/40 flex-shrink-0 flex items-center justify-center bg-transparent group-hover:border-primary transition-all">
-                                            <div className="w-2 h-2 bg-primary opacity-0 group-hover:opacity-100 transition-opacity" />
+                                    <div
+                                        key={service}
+                                        onClick={() => toggleService(service)}
+                                        className="flex items-center gap-3 cursor-pointer group select-none"
+                                    >
+                                        <div
+                                            className="relative w-5 h-5 border border-white/40 flex-shrink-0 flex items-center justify-center bg-transparent group-hover:border-primary transition-all"
+                                        >
+                                            <div className={`w-2 h-2 bg-primary transition-opacity ${formData.services.includes(service) ? "opacity-100" : "opacity-0"}`} />
                                         </div>
-                                        <span className="text-white text-sm md:text-base font-normal whitespace-nowrap">{service}</span>
-                                    </label>
+                                        <span className="text-white text-sm md:text-base font-normal whitespace-nowrap">
+                                            {service}
+                                        </span>
+                                    </div>
                                 ))}
                             </div>
                         </div>
@@ -120,21 +200,50 @@ const ContactInfoSection = () => {
                         {/* Message Input */}
                         <div className="md:col-span-2 flex flex-col gap-2 mt-4">
                             <textarea
+                                required
+                                name="message"
+                                value={formData.message}
+                                onChange={handleInputChange}
                                 placeholder="Type your message"
                                 rows={6}
                                 className="bg-white border-none p-4 outline-none text-black font-normal resize-none"
                             />
                         </div>
 
-                        {/* Submit Button */}
-                        <div className="md:col-span-2 mt-4">
+                        {/* Submit Button & Status */}
+                        <div className="md:col-span-2 mt-4 flex flex-col gap-4">
                             <motion.button
+                                disabled={status === "loading"}
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
-                                className="w-full bg-primary text-white py-4 text-sm md:text-base font-normal uppercase tracking-widest shadow-xl transition-all hover:bg-primary/95"
+                                type="submit"
+                                className={`w-full py-4 text-sm md:text-base font-normal uppercase tracking-widest shadow-xl transition-all flex items-center justify-center gap-3 ${status === "success" ? "bg-green-600" : "bg-primary hover:bg-primary/95"
+                                    } text-white disabled:opacity-50 disabled:cursor-not-allowed`}
                             >
-                                Contact Us
+                                {status === "loading" ? (
+                                    <>
+                                        <Loader2 className="w-5 h-5 animate-spin" />
+                                        Sending...
+                                    </>
+                                ) : status === "success" ? (
+                                    <>
+                                        <CheckCircle2 className="w-5 h-5" />
+                                        Message Sent!
+                                    </>
+                                ) : (
+                                    "Contact Us"
+                                )}
                             </motion.button>
+
+                            {status === "error" && (
+                                <motion.p
+                                    initial={{ opacity: 0, y: -10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    className="text-red-500 text-sm text-center"
+                                >
+                                    {errorMessage}
+                                </motion.p>
+                            )}
                         </div>
                     </form>
                 </motion.div>
